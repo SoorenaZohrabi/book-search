@@ -97,3 +97,9 @@ clearFilters.addEventListener("click", () => {
 
     renderBooks(books);
 });
+
+searchInput.addEventListener("keydown", event => {
+    if (event.key === "Enter") {
+        handleSearch();
+    }
+});
