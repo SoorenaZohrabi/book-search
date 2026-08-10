@@ -1,5 +1,6 @@
 import { searchBooks } from "./api.js";
+import { renderBooks } from "./render.js";
 
 const data = await searchBooks("javascript");
 
-console.log(data);
+renderBooks(data.docs);
