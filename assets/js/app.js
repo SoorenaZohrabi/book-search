@@ -7,6 +7,8 @@ const loading = document.getElementById("loading");
 const errorState = document.getElementById("error-state");
 const errorMessage = document.getElementById("error-message");
 const emptyState = document.getElementById("empty-state");
+const resultsCount = document.getElementById("results-count");
+const searchQuery = document.getElementById("search-query");
 
 function showLoading() {
     loading.classList.remove("d-none");
@@ -41,6 +43,9 @@ async function handleSearch() {
         const data = await searchBooks(query);
 
         hideLoading();
+
+        resultsCount.textContent = `${data.numFound} books`;
+        searchQuery.textContent = `Results for "${query}"`;
 
         if (data.docs.length === 0) {
             emptyState.classList.remove("d-none");
