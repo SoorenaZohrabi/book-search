@@ -1,10 +1,6 @@
 import { searchBooks } from "./api.js";
 import { renderBooks } from "./render.js";
-import {
-    filterByLanguage,
-    filterByYear,
-    sortBooks
-} from "./filter.js";
+import { filterByLanguage, filterByYear, sortBooks } from "./filter.js";
 
 const searchInput = document.getElementById("search-input")
 const searchButton = document.getElementById("search-btn")
@@ -85,6 +81,7 @@ function applyFilters() {
     filteredBooks = filterByYear(filteredBooks, yearFilter.value);
     filteredBooks = sortBooks(filteredBooks, sortFilter.value);
 
+    resultsCount.textContent = `${filteredBooks.length} books`;
     renderBooks(filteredBooks);
 }
 
