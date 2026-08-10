@@ -1,5 +1,10 @@
 import { searchBooks } from "./api.js";
 import { renderBooks } from "./render.js";
+import {
+    filterByLanguage,
+    filterByYear,
+    sortBooks
+} from "./filter.js";
 
 const searchInput = document.getElementById("search-input")
 const searchButton = document.getElementById("search-btn")
@@ -9,6 +14,11 @@ const errorMessage = document.getElementById("error-message");
 const emptyState = document.getElementById("empty-state");
 const resultsCount = document.getElementById("results-count");
 const searchQuery = document.getElementById("search-query");
+const languageFilter = document.getElementById("language-filter");
+const yearFilter = document.getElementById("year-filter");
+const sortFilter = document.getElementById("sort-filter");
+
+let books = [];
 
 function showLoading() {
     loading.classList.remove("d-none");
@@ -54,17 +64,30 @@ async function handleSearch() {
 
         emptyState.classList.add("d-none");
 
-        renderBooks(data.docs);
+        books = data.docs;
+
+        renderBooks(books);
 
     } catch (error) {
         hideLoading();
 
-        showError(
-            "Unable to load books. Please try again."
-        );
+        showError("Unable to load books. Please try again.");
 
         console.error(error);
     }
 }
 
+function applyFilters() {
+    let filteredBooks = [...books];
+
+    filteredBooks = filterByLanguage(filteredBooks, languageFilter.value);
+    filteredBooks = filterByYear(filteredBooks, yearFilter.value);
+    filteredBooks = sortBooks(filteredBooks, sortFilter.value);
+
+    renderBooks(filteredBooks);
+}
+
 searchButton.addEventListener("click", handleSearch);
+languageFilter.addEventListener("change", applyFilters);
+yearFilter.addEventListener("change", applyFilters);
+sortFilter.addEventListener("change", applyFilters);

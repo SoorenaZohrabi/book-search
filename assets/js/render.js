@@ -69,18 +69,8 @@ function createBookCard(book) {
 
     button.rel = "noopener noreferrer";
 
-    cardBody.append(
-        title,
-        author,
-        year,
-        button
-    );
-
-    card.append(
-        cover,
-        cardBody
-    );
-
+    cardBody.append(title, author, year, button);
+    card.append(cover, cardBody);
     col.appendChild(card);
 
     return col;
