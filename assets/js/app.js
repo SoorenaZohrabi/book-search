@@ -17,6 +17,7 @@ const searchQuery = document.getElementById("search-query");
 const languageFilter = document.getElementById("language-filter");
 const yearFilter = document.getElementById("year-filter");
 const sortFilter = document.getElementById("sort-filter");
+const clearFilters = document.getElementById("clear-filters");
 
 let books = [];
 
@@ -91,3 +92,11 @@ searchButton.addEventListener("click", handleSearch);
 languageFilter.addEventListener("change", applyFilters);
 yearFilter.addEventListener("change", applyFilters);
 sortFilter.addEventListener("change", applyFilters);
+
+clearFilters.addEventListener("click", () => {
+    languageFilter.value = "all";
+    yearFilter.value = "all";
+    sortFilter.value = "relevance";
+
+    renderBooks(books);
+});
