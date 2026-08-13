@@ -18,3 +18,11 @@ export function showError(message) {
 export function hideError() {
     uiElements.errorState.classList.add("d-none");
 }
+
+export function showPagination() {
+    uiElements.pagination.classList.remove("d-none");
+}
+
+export function hidePagination() {
+    uiElements.pagination.classList.add("d-none");
+}

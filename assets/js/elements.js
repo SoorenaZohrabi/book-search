@@ -10,3 +10,7 @@ export const languageFilter = document.getElementById("language-filter");
 export const yearFilter = document.getElementById("year-filter");
 export const sortFilter = document.getElementById("sort-filter");
 export const clearFilters = document.getElementById("clear-filters");
+export const pagination = document.getElementById("pagination");
+export const prePage = document.getElementById("previous-page");
+export const currentPage = document.getElementById("current-page");
+export const nextPage = document.getElementById("next-page");

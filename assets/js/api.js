@@ -1,8 +1,8 @@
 const API_URL = "https://openlibrary.org/search.json";
 
-export async function searchBooks(query, language, sort, fromYear, toYear = 2026, limit = 20, page = 1) {
+export async function searchBooks(query, page = 1, language, sort, fromYear, toYear = 2026, limit = 20) {
     const params = new URLSearchParams();
-    
+
     let searchQuery = query;
 
     if (fromYear) {
