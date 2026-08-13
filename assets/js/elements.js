@@ -1,0 +1,12 @@
+export const searchInput = document.getElementById("search-input")
+export const searchButton = document.getElementById("search-btn")
+export const loading = document.getElementById("loading");
+export const errorState = document.getElementById("error-state");
+export const errorMessage = document.getElementById("error-message");
+export const emptyState = document.getElementById("empty-state");
+export const resultsCount = document.getElementById("results-count");
+export const searchQuery = document.getElementById("search-query");
+export const languageFilter = document.getElementById("language-filter");
+export const yearFilter = document.getElementById("year-filter");
+export const sortFilter = document.getElementById("sort-filter");
+export const clearFilters = document.getElementById("clear-filters");
