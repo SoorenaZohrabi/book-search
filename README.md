@@ -8,7 +8,7 @@ The project allows users to search for books, filter and sort results, and brows
 
 ## 🌐 Demo
 
-🔗 **[Bookena](https://soorenazohrabi.github.io/book-search/)**
+🔗 **[Bookena](https://bookena.soorenadev.ir)**
 
 ---
 
@@ -21,8 +21,7 @@ The project allows users to search for books, filter and sort results, and brows
 * 📅 Display publication year
 * 🌐 Filter books by language
 * 📆 Filter books by publication year
-* 🔤 Sort books by title
-* 📅 Sort books by publication year
+* 🔤 Sort books
 * 🔄 Clear filters
 * ⏳ Loading state
 * ⚠️ Error handling
@@ -79,10 +78,12 @@ bookena/
 │
 ├── assets/
 │   └── js/
-│       ├── app.js
 │       ├── api.js
-│       ├── filter.js
-│       └── render.js
+│       ├── app.js
+│       ├── elements.js
+│       ├── pagination.js
+│       ├── render.js
+│       └── stats.js
 ```
 
 ---
@@ -91,18 +92,6 @@ bookena/
 
 Bookena uses a modular JavaScript structure where each module has a specific responsibility.
 
-### `app.js`
-
-The main application controller.
-
-Responsible for:
-
-* Managing application state
-* Handling user events
-* Connecting API, filtering, and rendering
-* Managing loading and error states
-* Handling pagination
-
 ### `api.js`
 
 Responsible for communication with the Open Library API.
@@ -110,20 +99,43 @@ Responsible for communication with the Open Library API.
 Main function:
 
 ```javascript
-searchBooks(query, page)
+searchBooks(query, page, language, sort, fromYear, toYear , limit)
 ```
 
-### `filter.js`
+### `app.js`
 
-Contains book filtering and sorting logic.
+The main application controller.
 
-Responsibilities include:
+Responsible for:
 
-```javascript
-filterByLanguage()
-filterByYear()
-sortBooks()
-```
+* Handling user events
+* Connecting API, filtering, and rendering
+* Managing loading and error states
+
+### `elements.js`
+
+The `elements.js` module centralizes references to the application's DOM elements. It provides reusable references for the search input, search button, filters, loading state, error state, empty state and other UI elements.
+
+This module helps keep DOM access organized and allows other modules to import the elements they need without repeatedly using `document.getElementById()`.
+
+**Responsibilities:**
+- Store references to search-related elements
+- Store references to filter controls
+- Store references to loading, error, and empty states
+- Store references to result and statistics elements
+- Provide shared DOM references to other modules
+
+### `pagination.js`
+
+The `pagination.js` module manages navigation between pages of search results. It handles changing the current page, fetching the corresponding books, updating the displayed results, and synchronizing the current page indicator in the UI.
+
+**Responsibilities:**
+- Navigate to the previous and next pages
+- Prevent navigation beyond available pages
+- Update the current page state
+- Fetch new book data when the page changes
+- Refresh the book list after pagination
+- Update the current page display in the interface
 
 ### `render.js`
 
@@ -136,6 +148,17 @@ Main responsibilities:
 * Creating book cover images
 * Creating book information
 * Creating links to Open Library
+
+### `uiState.js`
+
+The `uiState.js` module manages the visibility and state of different UI components. It provides reusable functions for displaying and hiding loading indicators, error messages, and pagination controls.
+
+**Responsibilities:**
+- Show and hide the loading state during API requests
+- Display and clear error messages
+- Control the visibility of empty states
+- Show and hide pagination controls
+- Keep UI state changes consistent across the application
 
 ---
 
@@ -158,13 +181,6 @@ Open Library API
  │
  ▼
 Book Data
- │
- ▼
-filter.js
- │
- ├── Language Filter
- ├── Year Filter
- └── Sorting
  │
  ▼
 render.js

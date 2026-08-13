@@ -44,7 +44,8 @@ async function handleSearch() {
     currentStats.books = data.docs;
     uiElements.emptyState.classList.add("d-none");
     renderBooks(currentStats.books);
-    currentStats.pages = data.numFound / 20;
+    currentStats.pages = Math.ceil(data.numFound / 20);
+    console.log(currentStats.pages);
 
     if (data.numFound > 20) {
         uiStats.showPagination();
